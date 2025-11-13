@@ -1,0 +1,24 @@
+<div class="detail-container" *ngIf="chambre">
+  
+    <div class="detail-content">
+      <div class="slider-container">
+        <div class="slider">
+          <img [src]="chambre.images[currentImageIndex]" alt="Image Chambre" class="slide-image" />
+          <div class="nav nav-prev" (click)="prevSlide()">&#10094;</div>
+          <div class="nav nav-next" (click)="nextSlide()">&#10095;</div>
+        </div>
+      </div>
+  
+      <div class="chambre-info">
+        <h2>Chambre n°{{ chambre.numero }} - {{ chambre.type }}</h2>
+        <p><strong>Prix :</strong> {{ chambre.prix }} Dt / nuit</p>
+        <p><strong>Description :</strong> {{ chambre.desc }}</p>
+        <p><strong>Capacité :</strong> {{ chambre.capacite }} personne(s)</p>
+        
+        
+      </div>
+    </div>
+    <button class="back-btn" routerLink="/chambres">← Retour</button>
+
+  </div>
+    

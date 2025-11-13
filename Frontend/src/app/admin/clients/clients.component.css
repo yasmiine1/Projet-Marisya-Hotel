@@ -1,0 +1,78 @@
+/* Titre de la section */
+h3 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* En-tête de table */
+.table th {
+  padding: 1rem;
+  text-align: left;
+  font-size: 1.1rem;
+  background-color: #007bff;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Contenu des cellules */
+.table td {
+  padding: 1rem;
+  text-align: left;
+  font-size: 1rem;
+  color: #333;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Lignes paires de la table */
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Survol des lignes */
+.table tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* Style des bordures */
+.table, .table th, .table td {
+  border: 1px solid #ddd;
+}
+
+/* Mise en forme responsive */
+@media (max-width: 768px) {
+  .table th, .table td {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+}
+/* Bouton Retour au Dashboard */
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: #fff;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+

@@ -1,0 +1,75 @@
+<div class="slider-container">
+    <div class="slider">
+      @for (img of images; track img) {
+        <div class="slide">
+          <img [src]="img" alt="slider image" class="slide-image">
+        </div>
+
+      }
+    </div>
+    <div class="nav-prev" (click)="prevSlide()">&#10094;</div>
+    <div class="nav-next" (click)="nextSlide()">&#10095;</div>
+  </div>
+  <div class="experience-container">
+    <h1>Faites l'expérience de véritables moments de plaisir</h1>
+    <p>Goûtez à la belle vie dans les établissements Mövenpick Hotels & Resorts, où chaque moment est pensé pour être savouré, et où chaque séjour regorge de possibilités de se délecter.</p>
+  </div>
+  <div>
+    <img src="piscine.jpg" alt="piscine" class="piscine">
+  </div>
+  <div class="exp-container">
+    <h1>Des séjours pour tous les goûts en hôtel </h1>
+    <p>Trouvez la saveur de vos prochaines vacances    </p>
+  </div>
+  <div class="image-container">
+    <div class="image-box">
+      <img src="buffet.jpg" alt="buffet">
+      <p class="description">Un buffet délicieux pour tous les goûts.</p>
+    </div>
+    <div class="image-box">
+      <img src="resto4.jpg" alt="resto4">
+      <p class="description">Un restaurant avec une vue imprenable.</p>
+    </div>
+    <div class="image-box">
+      <img src="spa.jpg" alt="spa">
+      <p class="description">Un spa relaxant pour une détente totale.</p>
+    </div>
+  <!-- SECTION ÉVÉNEMENTS -->
+<div class="section-block">
+  <h2 class="text-center mb-4 section-title">📅 Événements à venir</h2>
+  <div class="card-flex-container">
+    <div class="custom-card" *ngFor="let e of evenements">
+      <div class="image-box">
+        <img [src]="e.images" alt="Événement Image"> <!-- Affichage de l'image de l'événement -->
+        <div class="card-body">
+          <h5 class="card-title text-primary fw-bold">{{ e.nom }}</h5>
+          <p class="card-text mb-1"><i class="bi bi-calendar-event"></i> {{ e.date_e | date: 'fullDate' }} à {{ e.date_e | date: 'shortTime' }}</p>
+          <p class="card-text"><i class="bi bi-geo-alt-fill"></i> {{ e.lieu }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION OFFRES -->
+<div class="section-block">
+  <h2 class="text-center mt-5 mb-4 section-title">🎁 Nos Offres Spéciales</h2>
+  <div class="card-flex-container">
+    <div class="custom-card" *ngFor="let o of offres">
+      <div class="image-box">
+        <img [src]="o.images" alt="Offre Image"> <!-- Affichage de l'image de l'offre -->
+        <div class="card-body">
+          <h5 class="card-title text-success fw-bold">{{ o.titre }}</h5>
+          <p class="card-text">{{ o.description }}</p>
+          <span class="badge bg-success fs-6">-{{ o.prixReduit }}%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    
+  </div>
+  

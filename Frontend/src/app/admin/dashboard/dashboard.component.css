@@ -1,0 +1,67 @@
+/* Container principal du dashboard */
+.container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+/* Titre du dashboard */
+h2 {
+  font-size: 2rem;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Navigation : Liste verticale et horizontale (responsive) */
+.nav {
+  padding-left: 0;
+  margin-bottom: 1rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #007bff;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  background-color: #f1f1f1;
+  color: #0056b3;
+}
+
+.nav-link.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Adaptation responsive pour les petites écrans */
+@media (max-width: 576px) {
+  .nav {
+    flex-direction: column;
+  }
+}
+
+/* Pour les écrans plus grands, ajuster la disposition horizontale */
+@media (min-width: 576px) {
+  .nav {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .nav-link {
+    margin: 0 10px;
+  }
+}

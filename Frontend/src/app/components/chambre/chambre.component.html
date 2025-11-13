@@ -1,0 +1,14 @@
+<!-- chambre.component.html -->
+<div class="chambre-list">
+    <div class="chambre-card" *ngFor="let chambre of chambres">
+      <img *ngIf="chambre.images?.length" [src]="chambre.images[0]" class="chambre-image">
+      <h3>{{ chambre.type }}</h3>
+      <p> {{ chambre.prix  }} Dt / nuit </p>
+      <div class="detail-btn">
+        <a [routerLink]="['/chambre', chambre.numero]">
+           plus de details
+        </a>
+      </div>
+    </div>
+  </div>
+  

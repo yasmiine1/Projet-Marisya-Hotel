@@ -1,0 +1,28 @@
+<div class="reservation-page">
+    <h2>Rechercher une chambre disponible</h2>
+  
+    <div class="form">
+      <label>Date de début:</label>
+      <input type="date" [(ngModel)]="dateDebut" />
+  
+      <label>Date de fin:</label>
+      <input type="date" [(ngModel)]="dateFin" />
+  
+      <button (click)="rechercher()">Rechercher</button>
+    </div>
+  
+    <p *ngIf="message">{{ message }}</p>
+  
+    <div class="chambres" *ngIf="chambresDisponibles.length > 0">
+      <div *ngFor="let chambre of chambresDisponibles" class="chambre-card">
+        <img [src]=" chambre.images[0]" alt="Image chambre" />
+        <h3>{{ chambre.type }}</h3>
+        <p>{{ chambre.prix }} DT / nuit</p>
+        <a [routerLink]="['/chambree', chambre.numero]" 
+   [queryParams]="{ dateDebut: dateDebut, dateFin: dateFin }">
+   Détails
+</a>
+      </div>
+    </div>
+  </div>
+  

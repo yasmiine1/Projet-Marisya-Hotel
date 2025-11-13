@@ -1,0 +1,10 @@
+<h2>Créer un compte</h2>
+<form (ngSubmit)="inscrire()">
+  <input [(ngModel)]="nom" name="nom" placeholder="Nom" required>
+  <input [(ngModel)]="prenom" name="prenom" placeholder="Prénom" required>
+  <input [(ngModel)]="email" name="email" placeholder="Email" required>
+  <input [(ngModel)]="motDePasse" name="motDePasse" type="password" placeholder="Mot de passe" required>
+  <button type="submit">S'inscrire</button>
+  <p>Vous avez un compte ? <a routerLink="/login">Connectez-vous</a></p>
+
+</form>

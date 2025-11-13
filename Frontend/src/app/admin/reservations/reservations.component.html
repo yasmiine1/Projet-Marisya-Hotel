@@ -1,0 +1,32 @@
+<h3>Liste des Réservations</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Statut</th>
+      <th>Type de réservation</th>
+      <th>Client</th>
+      <th>Dates de réservation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reservation of reservations">
+      <td>{{ reservation.id }}</td>
+      <td>{{ getStatutText(reservation.statut) }}</td>
+
+      <td>{{ reservation.typeReservation }}</td>
+      <td>{{ reservation.client.nom }}</td>
+      <td>
+        <ul>
+            <li *ngFor="let date of reservation.dateReservations">
+              Du {{ date.dateDebut | date:'longDate' }} au {{ date.dateFin | date:'longDate' }}
+            </li>
+          </ul>
+          
+      </td>
+    </tr>
+    <div class="text-center mt-4">
+  <button class="btn btn-secondary" (click)="goToDashboard()">Retour au Dashboard</button>
+</div>
+  </tbody>
+</table>

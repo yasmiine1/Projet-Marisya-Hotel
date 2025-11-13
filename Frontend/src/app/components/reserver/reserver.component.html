@@ -1,0 +1,70 @@
+<div class="reservation-container" *ngIf="chambre">
+    <h2>Réserver Chambre n°{{ chambre.numero }} - {{ chambre.type }}</h2>
+    <p><strong>Date Début :</strong> {{ dateDebut }}</p>
+    <p><strong>Date Fin :</strong> {{ dateFin }}</p>
+    <p><strong>Prix :</strong> {{ totalPrix }} Dt</p>
+    
+    <form (ngSubmit)="submitReservation()">
+        <div class="options">
+          <label>
+            <input type="checkbox"
+                   [(ngModel)]="options.allInclusive"
+                   [ngModelOptions]="{standalone: true}"
+                   (change)="onOptionChange('allInclusive')" />
+            All-Inclusive
+          </label>
+          <label>
+            <input type="checkbox"
+                   [(ngModel)]="options.petitDej"
+                   [ngModelOptions]="{standalone: true}"
+                   [disabled]="options.allInclusive"
+                   (change)="onOptionChange('petitDej')" />
+            Petit Déjeuner
+          </label>
+          <label>
+            <input type="checkbox"
+                   [(ngModel)]="options.demiPension"
+                   [ngModelOptions]="{standalone: true}"
+                   [disabled]="options.allInclusive"
+                   (change)="onOptionChange('demiPension')" />
+            Demi Pension
+          </label>
+          <label>
+            <input type="checkbox"
+                   [(ngModel)]="options.litBebe"
+                   [ngModelOptions]="{standalone: true}"
+                   (change)="updatePrix()" />
+            Lit Bébé
+          </label>
+        </div>
+      
+       
+        <div class="boutons">
+            <button type="submit">Réserver</button>
+         <button type="button" (click)="payerReservation()">Payer</button>
+    </div>
+  </form>
+
+  <!-- Affichage des détails de la réservation après paiement -->
+  <div *ngIf="isPaye">
+    <h3>Détails de la réservation :</h3>
+    <p><strong>Date Début :</strong> {{ dateDebut }}</p>
+    <p><strong>Date Fin :</strong> {{ dateFin }}</p>
+    <p><strong>Prix Total :</strong> {{ totalPrix }} Dt</p>
+    <p><strong>Options :</strong></p>
+    <ul>
+      <li *ngIf="options.allInclusive">All-Inclusive</li>
+      <li *ngIf="options.petitDej">Petit Déjeuner</li>
+      <li *ngIf="options.demiPension">Demi Pension</li>
+      <li *ngIf="options.litBebe">Lit Bébé</li>
+    </ul>
+    <div class="alert">
+      <p>Paiement réussi !</p>
+    </div>
+  </div>
+
+  <!-- Message de réservation réussie -->
+  <div *ngIf="alertVisible" class="alert">
+    <p>Réservation réussie !</p>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+<div class="container mt-4">
+    <h2>Liste des chambres</h2>
+  
+    <!-- Formulaire d'ajout -->
+    <form (ngSubmit)="addChambre()" #chambreForm="ngForm" class="mb-4">
+  
+      <div class="row">
+        <div class="col-md-3">
+          <label>Type</label>
+          <input type="text" class="form-control" [(ngModel)]="newChambre.type" name="type" required>
+        </div>
+  
+        <div class="col-md-2">
+          <label>Prix</label>
+          <input type="number" class="form-control" [(ngModel)]="newChambre.prix" name="prix" required>
+        </div>
+  
+        <div class="col-md-2">
+          <label>Capacité</label>
+          <input type="number" class="form-control" [(ngModel)]="newChambre.capacite" name="capacite" required>
+        </div>
+  
+        <div class="col-md-3">
+          <label>Description</label>
+          <input type="text" class="form-control" [(ngModel)]="newChambre.desc" name="desc">
+        </div>
+  
+        <div class="col-md-3">
+          <label>Image (URL)</label>
+          <input type="text" class="form-control" [(ngModel)]="imageInput" name="imageInput">
+          <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addImage()">Ajouter Image</button>
+          
+          <div *ngIf="newChambre.images.length > 0" class="mt-2">
+            <small>Images ajoutées :</small>
+            <ul>
+              <li *ngFor="let img of newChambre.images">{{ img }}</li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="col-md-2 d-flex align-items-end">
+          <button type="submit" class="btn btn-success w-100">Ajouter</button>
+        </div>
+      </div>
+  
+      <!-- Champ caché pour la disponibilité -->
+      <input type="hidden" [(ngModel)]="newChambre.disponibilite" name="disponibilite">
+    </form>
+  
+    <!-- Liste des chambres -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Numéro</th>
+          <th>Type</th>
+          <th>Prix</th>
+          <th>Capacité</th>
+          <th>Description</th>
+          <th>Disponibilité</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let chambre of chambres">
+          <ng-container *ngIf="editingChambre?.numero !== chambre.numero">
+            <!-- Affichage normal -->
+            <td>{{ chambre.numero }}</td>
+            <td>{{ chambre.type }}</td>
+            <td>{{ chambre.prix }} €</td>
+            <td>{{ chambre.capacite }} pers</td>
+            <td>{{ chambre.desc }}</td>
+            <td>
+              <span [ngClass]="{ 'text-success': chambre.disponibilite, 'text-danger': !chambre.disponibilite }">
+                {{ chambre.disponibilite ? 'Disponible' : 'Indisponible' }}
+              </span>
+            </td>
+            <td>
+              <button class="btn btn-primary btn-sm" (click)="editChambre(chambre)">Modifier</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteChambre(chambre.numero)">Supprimer</button>
+            </td>
+          </ng-container>
+      
+          <!-- Ligne de modification -->
+          <ng-container *ngIf="editingChambre?.numero === chambre.numero">
+            <td>{{ editingChambre.numero }}</td>
+            <td><input type="text" [(ngModel)]="editingChambre.type" name="type{{editingChambre.numero}}" class="form-control"></td>
+            <td><input type="number" [(ngModel)]="editingChambre.prix" name="prix{{editingChambre.numero}}" class="form-control"></td>
+            <td><input type="number" [(ngModel)]="editingChambre.capacite" name="cap{{editingChambre.numero}}" class="form-control"></td>
+            <td><input type="text" [(ngModel)]="editingChambre.desc" name="desc{{editingChambre.numero}}" class="form-control"></td>
+            <div *ngFor="let img of editingChambre.images; let i = index" class="d-flex align-items-center">
+                <small class="text-truncate me-2">{{ img }}</small>
+                <button class="btn btn-sm btn-outline-danger" (click)="removeImage(i)">🗑</button>
+              </div>
+            
+              <!-- Ajout d'une nouvelle image -->
+              <input type="text" [(ngModel)]="editImageInput" class="form-control mt-2" placeholder="Nouvelle image (nom.jpg)">
+              <button type="button" class="btn btn-sm btn-secondary mt-1" (click)="addImageToEditing()">Ajouter Image</button>
+            <td>
+              <select [(ngModel)]="editingChambre.disponibilite" name="dispo{{editingChambre.numero}}" class="form-control">
+                <option [ngValue]="true">Disponible</option>
+                <option [ngValue]="false">Indisponible</option>
+              </select>
+            </td>
+            <td>
+              <button class="btn btn-success btn-sm" (click)="updateChambre()">Enregistrer</button>
+            </td>
+          </ng-container>
+        </tr>
+        <div class="text-center mt-4">
+  <button class="btn btn-secondary" (click)="goToDashboard()">Retour au Dashboard</button>
+</div>
+      </tbody>
+      
+    </table>
+  </div>
+  

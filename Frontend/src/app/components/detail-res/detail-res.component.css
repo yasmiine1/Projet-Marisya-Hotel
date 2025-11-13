@@ -1,0 +1,85 @@
+.detail-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .retour-btn {
+    background-color: #eee;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 15px;
+  }
+  
+  .slider {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .nav-prev, .nav-next {
+    position: absolute;
+    top: 50%;
+    font-size: 32px;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    user-select: none;
+  }
+  
+  .nav-prev {
+    left: 10px;
+  }
+  
+  .nav-next {
+    right: 10px;
+  }
+  
+  .info {
+    text-align: left;
+  }
+  
+  .info h2 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .info p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  .reserver-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #c89a3e;
+    color: white;
+    border: none;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .reserver-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

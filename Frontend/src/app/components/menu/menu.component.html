@@ -1,0 +1,24 @@
+<nav>
+    <div class="logo">
+      <img src="logo.png" alt="logo">
+    </div>
+  
+    <ul class="menu">
+      <li><a routerLink="/home" routerLinkActive="active">Accueil</a></li>
+      <li><a routerLink="/chambres" routerLinkActive="active">Chambres</a></li>
+      <li><a routerLink="/reserver" routerLinkActive="active">Réserver</a></li>
+      <li><a routerLink="/apropos" routerLinkActive="active">À propos</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+    </ul>
+   
+   
+      <div class="compte-btn">
+        <a  routerLink="/compte">
+          <i class="fas fa-user"></i> Mon compte
+        </a>
+        <button *ngIf="authService.isLoggedIn()" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i> Déconnexion
+        </button>
+    </div>
+  </nav>
+  

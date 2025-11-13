@@ -1,0 +1,55 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo img {
+    height: 70px; /* Taille réduite du logo */
+  }
+  
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .menu li a {
+    text-decoration: none;
+    color: #374151;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+  
+  .menu li a:hover {
+    color: #c89a3e; /* Même bleu que le logo */
+  }
+  
+  .menu li a.active {
+    font-weight: bold;
+  }
+  
+  .compte-btn a {
+    background-color: #c89a3e; /* Bleu logo */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .compte-btn a:hover {
+    background-color: #a88236;
+  }

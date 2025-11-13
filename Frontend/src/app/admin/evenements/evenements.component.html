@@ -1,0 +1,96 @@
+<div class="container mt-4">
+  <h2>Liste des événements</h2>
+
+  <!-- Formulaire d'ajout d'un événement -->
+  <form (ngSubmit)="addEvenement()" #evenementForm="ngForm" class="mb-4">
+    <div class="row">
+      <div class="col-md-3">
+        <label>Nom de l'événement</label>
+        <input type="text" class="form-control" [(ngModel)]="newEvenement.nom" name="nom" required>
+      </div>
+
+      <div class="col-md-3">
+        <label>Heure</label>
+        <input type="datetime-local" class="form-control" [(ngModel)]="newEvenement.date_e" name="date_e" required>
+      </div>
+
+      <div class="col-md-3">
+        <label>Description</label>
+        <input type="text" class="form-control" [(ngModel)]="newEvenement.lieu" name="lieu">
+      </div>
+
+      <div class="col-md-3">
+        <label>Image (URL)</label>
+        <input type="text" class="form-control" [(ngModel)]="imageInput" name="imageInput">
+        <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addImage()">Ajouter Image</button>
+
+        <div *ngIf="newEvenement.images.length > 0" class="mt-2">
+          <small>Images ajoutées :</small>
+          <ul>
+            <li *ngFor="let img of newEvenement.images">{{ img }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-success w-100">Ajouter</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Liste des événements -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Heure</th>
+        <th>Description</th>
+        <th>Images</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let evenement of evenements">
+        <ng-container *ngIf="editingEvenement?.id !== evenement.id">
+          <!-- Affichage normal -->
+          <td>{{ evenement.nom }}</td>
+          <td>{{ evenement.date_e | date:'short' }}</td>
+          <td>{{ evenement.lieu }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let img of evenement.images">{{ img }}</li>
+            </ul>
+          </td>
+          <td>
+            <button class="btn btn-primary btn-sm" (click)="editEvenement(evenement)">Modifier</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteEvenement(evenement.id)">Supprimer</button>
+          </td>
+        </ng-container>
+
+        <!-- Ligne de modification -->
+        <ng-container *ngIf="editingEvenement?.id === evenement.id">
+          <td><input type="text" [(ngModel)]="editingEvenement.nom" name="nom{{editingEvenement.id}}" class="form-control"></td>
+          <td><input type="datetime-local" [(ngModel)]="editingEvenement.date_e" name="date_e{{editingEvenement.id}}" class="form-control"></td>
+          <td><input type="text" [(ngModel)]="editingEvenement.lieu" name="lieu{{editingEvenement.id}}" class="form-control"></td>
+
+          <td>
+            <div *ngFor="let img of editingEvenement.images; let i = index" class="d-flex align-items-center">
+              <small class="text-truncate me-2">{{ img }}</small>
+              <button class="btn btn-sm btn-outline-danger" (click)="removeImage(i)">🗑</button>
+            </div>
+
+            <!-- Ajout d'une nouvelle image -->
+            <input type="text" [(ngModel)]="editImageInput" class="form-control mt-2" placeholder="Nouvelle image (nom.jpg)">
+            <button type="button" class="btn btn-sm btn-secondary mt-1" (click)="addImageToEditing()">Ajouter Image</button>
+          </td>
+          <td>
+            <button class="btn btn-success btn-sm" (click)="updateEvenement()">Enregistrer</button>
+          </td>
+        </ng-container>
+      </tr>
+      <div class="text-center mt-4">
+  <button class="btn btn-secondary" (click)="goToDashboard()">Retour au Dashboard</button>
+</div>
+    </tbody>
+  </table>
+</div>

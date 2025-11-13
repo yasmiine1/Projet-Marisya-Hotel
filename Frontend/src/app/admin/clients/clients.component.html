@@ -1,0 +1,21 @@
+<h3>Liste des clients</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let client of clients">
+      <td>{{ client.id }}</td>
+      <td>{{ client.nom }}</td>
+      <td>{{ client.email }}</td>
+    </tr>
+    <div class="text-center mt-4">
+  <button class="btn btn-secondary" (click)="goToDashboard()">Retour au Dashboard</button>
+</div>
+  </tbody>
+
+</table>

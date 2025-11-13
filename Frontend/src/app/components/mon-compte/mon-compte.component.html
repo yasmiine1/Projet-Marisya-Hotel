@@ -1,0 +1,49 @@
+<div *ngIf="client">
+  <h2>Mon Compte</h2>
+  
+  <!-- Formulaire de mise à jour du compte -->
+  <form (ngSubmit)="updateClient()">
+    <div>
+      <label for="nom">Nom</label>
+      <input id="nom" [(ngModel)]="client.nom" name="nom" required />
+    </div>
+
+    <div>
+      <label for="email">Email</label>
+      <input id="email" [(ngModel)]="client.email" name="email" required />
+    </div>
+
+    <div>
+      <label for="motDePasse">Mot de Passe</label>
+      <input id="motDePasse" [(ngModel)]="client.motDePasse" name="motDePasse" type="password" required />
+    </div>
+
+    <button type="submit">Mettre à jour</button>
+  </form>
+
+  <!-- Liste des réservations -->
+  <h3>Mes réservations</h3>
+  <ul *ngIf="reservations.length > 0; else noReservations">
+    <li *ngFor="let reservation of reservations">
+      <p> - <strong>Statut:</strong> {{ reservation.statut }}</p>
+      <td>
+        <ul>
+            <li *ngFor="let date of reservation.dateReservations">
+              Du {{ date.dateDebut | date:'longDate' }} au {{ date.dateFin | date:'longDate' }}
+            </li>
+          </ul>
+          
+      </td>
+      
+      <!-- Boutons d'action -->
+      <button *ngIf="reservation.statut === 'RESERVEE'" (click)="payerReservation(reservation.id)">Payer</button>
+      <button *ngIf="reservation.statut === 'RESERVEE'" (click)="annulerReservation(reservation.id)">Annuler</button>
+    </li>
+  </ul>
+
+  <ng-template #noReservations>
+    <p>Vous n'avez pas de réservations.</p>
+  </ng-template>
+
+  <button (click)="logout()">Se déconnecter</button>
+</div>
